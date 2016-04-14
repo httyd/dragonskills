@@ -62,11 +62,11 @@ class Rule:
 
     def generate(self, message, antecedent, consequent):
 
-        pattern = re.escape(self.substitute(message.nick, antecedent)) \
+        pattern = "\\b" + re.escape(self.substitute(message.nick, antecedent)) \
                     .replace(re.escape("**"), "(.*)") \
                     .replace(re.escape("*"), "(?:\\b(\\w+)|(\\w+)\\b|(\\w+))") \
                     .replace(re.escape("^^"), ".*") \
-                    .replace(re.escape("^"), "\\w*")
+                    .replace(re.escape("^"), "\\w*") + "\\b"
 
         matches = re.match(".*"+pattern+".*", message.body, re.IGNORECASE)
 
