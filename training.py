@@ -218,7 +218,7 @@ class Training(Skill):
     @command("everything")
     def everything(self, message, args):
 
-        everything = "\n".join([str(r+1) + ". " + str(rule) for r, rule in enumerate(self.rules)])
+        everything = "\n".join([str(r+1) + ". " + str(rule).replace("://","[:]//") for r, rule in enumerate(self.rules)])
         message.reply("All trained rules:\n\n" + everything)
 
 
